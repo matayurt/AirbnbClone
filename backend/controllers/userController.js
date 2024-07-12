@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
-import User from "../models/userModel";
-import bcrypt from "bcryptjs"; // Şifreleri hashlemek güvenli bir şekilde kullanmak için
+import User from "../models/userModel.js";
+import bcrypt from "bcryptjs"; // Şifreleri hashlemek için kullanılır
 import jwt from "jsonwebtoken";
 
 // Kullanıcı Kayıt
@@ -37,7 +37,6 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 // Kullanıcı Giriş
-
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -57,11 +56,11 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-// JWT Token
+// JWT Token Oluşturma
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "30d",
   });
 };
 
-export default { registerUser, authUser };
+export { registerUser, authUser };
