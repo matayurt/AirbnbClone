@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -39,8 +40,9 @@ const LoginForm = () => {
             required
           />
         </div>
-        <button type="submit">Log In</button>
+        <button type="submit">Log In</button> <br />
         {error && <div style={{ color: 'red' }}>{error}</div>}
+        <Link to="/reset-password-request">Forgot your password?</Link>
       </form>
     </>
   );

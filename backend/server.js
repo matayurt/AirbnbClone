@@ -1,4 +1,5 @@
 import express from "express";
+//TODO search cors
 import cors from "cors";
 import dotenv from "dotenv";
 import ConnectDB from "./config/db.js";
