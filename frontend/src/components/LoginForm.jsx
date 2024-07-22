@@ -12,39 +12,47 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await login(email, password);
-      setError(''); // Başarılı giriş yapıldığında hatayı sıfırla
+      setError('');
     } catch (error) {
       setError('Login failed. Please check your email and password.');
-      console.error(error);
     }
   };
 
   return (
-    <>
-      <form onSubmit={loginHandler}>
-        <div>
-          <label>Email</label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-white shadow-lg">
+        <h1 className="text-2xl font-bold text-center">Login</h1>
+        <form onSubmit={loginHandler} className="space-y-6">
+          <div>
+            <label className="block text-sm">Email</label>
+            <input 
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-2 mt-2 bg-white border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
+            />
+          </div>
+          <div>
+            <label className="block text-sm">Password</label>
+            <input 
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-4 py-2 mt-2 border bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
+            />
+          </div>
+          <div>
+            <button type="submit" className="w-full px-4 py-2 font-bold text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600">Log In</button>
+          </div>
+          {error && <div className="text-red-500 text-center">{error}</div>}
+        </form>
+        <div className="text-center">
+          <Link to="/reset-password-request" className="text-sm text-indigo-600 hover:underline">Forgot your password?</Link>
         </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Log In</button> <br />
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-        <Link to="/reset-password-request">Forgot your password?</Link>
-      </form>
-    </>
+      </div>
+    </div>
   );
 };
 
